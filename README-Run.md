@@ -1,26 +1,22 @@
-# Run & smoke-test guide
+# README-Run
 
-## Install APK
+## Install
 ```bash
 adb install -r dist/tgwsproxy-android-universal-debug.apk
 ```
 
-## Basic smoke checks
-1. Launch app.
-2. Verify status is `stopped` on first open.
-3. Start proxy.
-4. Confirm foreground notification appears.
-5. Stop proxy.
-6. Restart proxy and verify it returns to running state.
+## Smoke test
+1. Open app and verify status = `stopped`.
+2. Set bind address `127.0.0.1`, port `1080`.
+3. Press `Start`, verify `running` + foreground notification.
+4. Press `Stop`, verify status returns `stopped`.
+5. Press `Restart`, verify service returns `running`.
+6. Press `Apply in Telegram`; if deep-link not available, use copied manual SOCKS5 settings.
+7. Try invalid port `0` and verify error validation.
+8. Start another process on same port and verify `port busy` error.
 
-## Telegram setup (manual fallback)
-In Telegram proxy settings:
+## Manual Telegram settings
 - Type: SOCKS5
-- Host: `127.0.0.1`
-- Port: value shown in app (default should be local only)
-- User/password: leave empty unless app explicitly requires
-
-## Error handling checks
-- Set invalid port (e.g. 0) and verify user-visible validation error.
-- Occupy proxy port with another process and verify `port busy` handling.
-- Disable network and verify app reports connectivity/start failures.
+- Host: 127.0.0.1
+- Port: app-configured port
+- Username/password: empty

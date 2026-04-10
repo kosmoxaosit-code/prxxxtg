@@ -1,17 +1,19 @@
-# tgwsproxy-android delivery scaffold
+# tgwsproxy-android (self-contained)
 
-This repository currently contains a **Windows 1-click APK build pipeline scaffold** for:
+This repository now contains a self-contained Android project with:
 
-- source repository: `https://github.com/amurcanov/tg-ws-proxy-android`
-- output artifact in `dist/`
-- reproducible checksum in `SHA256SUMS.txt`
+- localhost-only SOCKS5 proxy service (`127.0.0.1` by default),
+- foreground service with start/stop/restart,
+- hardened manifest defaults (no backup, no `QUERY_ALL_PACKAGES`, non-exported service),
+- internal app log buffer (without global logcat operations),
+- Windows build scripts producing APK in `dist/`.
 
-Run:
+## Build (Windows)
 
 ```bat
 build-apk.bat
 ```
 
-See:
-- `README-Windows.md`
-- `README-Run.md`
+Output:
+- `dist/tgwsproxy-android-universal-debug.apk`
+- `SHA256SUMS.txt`
